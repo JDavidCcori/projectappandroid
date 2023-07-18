@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHrerf=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear blog</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form>
+    <ion-item lines="none">
+      <ion-label position="floating" class="label-input-title">Título</ion-label>
+      <ion-input text-right type="text"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-label position="floating" class="label-input-title">Descripción</ion-label>
+      <ion-input text-right type="password"></ion-input>
+    </ion-item>
+    <div no-padding>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-button expand="block" color="success" shape="round" size="small" padding type="submit">
+              Guardar
+            </ion-button>
+          </ion-col>
+          <ion-col col-6>
+            <ion-button expand="block" color="warning" shape="round" size="small" padding type="submit">
+              Cancelar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </form>
+</ion-content>
+
+
