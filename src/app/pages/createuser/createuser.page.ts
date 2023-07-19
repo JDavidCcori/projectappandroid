@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserI } from 'src/app/models/userI.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-createuser',
@@ -11,6 +12,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class CreateuserPage implements OnInit {
 
+  formReg: FormGroup;
   datos: UserI = {
     nombre: '',
     correo: '',
@@ -23,21 +25,25 @@ export class CreateuserPage implements OnInit {
     private auth: AuthService,
     private firestore: FirestoreService,
     private router: Router,
-  ) { }
+  ) {
+    this.formReg = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()
+    })
+   }
 
   ngOnInit() {
   }
 
   async registrar() {
-    const res = await this.auth.registarUser(this.datos).catch( error => {
-    })
-    if (res && res.user) {
-        const path = 'Usuarios';
-        const id = res.user.uid;
-        this.datos.uid = id;
-        await this.firestore.createDoc(this.datos, path, id)
-        this.router.navigate(['/home'])
+      const res = await this.auth.register(this.datos).catch( error => {
+      })
+      if (res) {
+          const path = 'Usuarios';
+          const id = res.user.uid;
+          this.datos.uid = id;
+          await this.firestore.createDoc(this.datos, path, id)
+          this.router.navigate(['/login'])
+      }
     }
-
-  }
 }

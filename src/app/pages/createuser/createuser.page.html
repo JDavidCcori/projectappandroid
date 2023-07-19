@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button default-href="/"></ion-back-button>
     </ion-buttons>
     <ion-title>
       Registrarse
@@ -11,21 +11,21 @@
 
 <ion-content>
   <form>
-    <ion-item lines="none">
-      <ion-label position="floating" class="label-input-title">Nombre</ion-label>
+    <ion-item class="mb-3">
+      <ion-label class="form-label">Nombre</ion-label>
       <ion-input text-right type="text" [(ngModel)]="datos.nombre" name="nombre"></ion-input>
     </ion-item>
-    <ion-item lines="none">
-      <ion-label position="floating" class="label-input-title">Nacimiento</ion-label>
+    <ion-item class="mb-3">
+      <ion-label class="form-label">Nacimiento</ion-label>
       <ion-input text-right type="date" [(ngModel)]="datos.birth" name="birth"></ion-input>
     </ion-item>
-    <ion-item lines="none">
-      <ion-label position="floating" class="label-input-title">Email</ion-label>
+    <ion-item class="mb-3">
+      <ion-label class="form-label">Email</ion-label>
       <ion-input type="email" style="margin-left: 3%;" [(ngModel)]="datos.correo" name="correo"></ion-input>
     </ion-item>
     
-    <ion-item lines="none">
-      <ion-label position="floating" class="label-input-title">Contraseña</ion-label>
+    <ion-item class="mb-3">
+      <ion-label class="form-label">Contraseña</ion-label>
       <ion-input text-right type="password" [(ngModel)]="datos.password" name="password"></ion-input>
     </ion-item>
     <div no-padding>
