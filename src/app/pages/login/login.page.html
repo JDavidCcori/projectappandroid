@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Iniciar sesión
     </ion-title>
@@ -7,31 +10,53 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label position="floating" >Email</ion-label>
-      <ion-input type="email" [(ngModel)]="credentials.correo"></ion-input>
+  <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <ion-item class="mb-3">
+        <ion-label class="form-label">Correo</ion-label>
+        <ion-input type="text" class="form-control" formControlName="email" 
+        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"></ion-input>
+        <ion-icon slot="start" name="mail"></ion-icon>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating" >Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="credentials.password"></ion-input>
+    <ion-item class="mb-3">
+        <ion-label class="form-label">Contraseña</ion-label>
+        <ion-input type="password" class="form-control" 
+        formControlName="password"></ion-input>
+        <ion-icon slot="start" name="key"></ion-icon>
     </ion-item>
-  </ion-list>
+  </form>
   <div no-padding>
     <ion-grid>
       <ion-row>
         <ion-col col-6>
-          <ion-button (click)="login()" expand="block" color="success" shape="round" size="small" padding type="submit">
+          <ion-button (click)="onSubmit()" 
+          expand="block" color="success" shape="round" 
+          size="small" padding type="submit">
             Ingresar
           </ion-button>
         </ion-col>
         <ion-col col-6>
-          <ion-button [routerLink]="['/home']" routerLinkActive="router-link-active" expand="block" color="warning" shape="round" size="small" padding type="submit">
-            Cancelar
+          <ion-button [routerLink]="['/createuser']" routerLinkActive="router-link-active" expand="block" shape="round" size="small" padding type="submit">
+            Registrarse
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
-  <ion-button [routerLink]="['/createuser']" routerLinkActive="router-link-active" expand="block">Crear cuenta</ion-button>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Iniciar sesión a traves de:</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-button (click)="onClick()" routerLinkActive="router-link-active" type="submit" color="light">
+        <ion-img slot="start" src="assets/imgs/logoGoogle.png" style="width: 32px; height: 32px;"></ion-img>
+        Google
+      </ion-button>
+      <ion-button (click)="onClick()" routerLinkActive="router-link-active" type="submit" color="light">
+        <ion-img slot="start" src="assets/imgs/LogoFacebook.png" style="width: 32px; height: 32px;"></ion-img>
+        Facebook
+      </ion-button>
+    </ion-card-content>
+  
+  </ion-card>
 </ion-content>
