@@ -18,13 +18,14 @@ import { environment } from './credentials';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
-import { MenuComponent } from './components/menu/menu.component';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent,
-    MenuComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
@@ -33,6 +34,7 @@ import { MenuComponent } from './components/menu/menu.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    provideAuth(() => getAuth())
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 

@@ -1,18 +1,67 @@
+
 <ion-app>
-
-  <ion-split-pane contentId="main" when="false">
-    <!--  the side menu  -->
-    <ion-menu side="start" contentId="main" menuId="principal">
-        <app-menu></app-menu>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-img style="width: 300px; height: 150px" src="assets/imgs/blog.png" padding>
+          </ion-img>
+          <ion-title>Mi Blog - Menu</ion-title>
+          <ion-item-divider>
+          </ion-item-divider>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item>
+              <ion-label>
+                Mi blog
+              </ion-label>
+              <ion-icon slot="start" name="clipboard"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerLink]="['/user-i']" routerLinkActive="router-link-active">
+              <ion-label>
+                Perfil
+              </ion-label>
+              <ion-icon slot="start" name="person"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item>
+              <ion-label>
+                Mi blog
+              </ion-label>
+              <ion-icon slot="start" name="git-compare"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item [routerLink]="['/login']" routerLinkActive="router-link-active">
+              <ion-label>
+                Ingresar
+              </ion-label>
+              <ion-icon slot="start" name="log-in"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item detail="true" (click)="onClick()">
+              <ion-label>
+                Cerrar sesión
+              </ion-label>
+              <ion-icon slot="start" name="exit"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerLink]="['/createuser']" routerLinkActive="router-link-active">
+              <ion-label>
+                Registrarse
+              </ion-label>
+              <ion-icon slot="start" name="home"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
     </ion-menu>
-
-    <ion-menu side="end" contentId="main" menuId="segundo">
-      <app-menu></app-menu>
-  </ion-menu>
-  
-    <!-- the main content -->
-    <ion-router-outlet id="main"></ion-router-outlet>
-    
+    <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
-
 </ion-app>
+
+
