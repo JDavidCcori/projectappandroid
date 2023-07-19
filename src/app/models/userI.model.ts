@@ -9,8 +9,13 @@ export  interface Estudiante {
 export interface UserI {
   nombre: string;
   correo: string;
-  uid: string;
+  uid?: string;
   password: string;
   birth: Date;
-  perfil: 'cliente'| 'admin',
+  perfil: 'cliente'| 'admin';
+}
+
+export interface authUser{
+  email:string;
+  password:string;
 }
