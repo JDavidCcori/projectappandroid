@@ -11,5 +11,22 @@ export class UserEPage implements OnInit {
 
   ngOnInit() {
   }
-
+  public alertButtons = ['OK'];
+  public alertInputs = [
+    {
+      placeholder: 'Nombre',
+    },
+    {
+      placeholder: 'Nacimiento',
+      attributes: {
+        maxlength: 8,
+      },
+    },
+    {
+      type: 'email',
+      placeholder: 'Age',
+      min: 1,
+      max: 100,
+    },
+  ];
 }
