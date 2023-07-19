@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { MenuComponent } from '../components/menu/menu.component';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +14,5 @@ export class HomePage implements OnInit{
 
   ngOnInit(): void {
       
-  }
-  async openMenu(ev: any) {  
-    const menu = await this.popoverController.create({
-      component: MenuComponent,
-      translucent: true,
-      event: ev,
-    });
-    await menu.present();
   }
 }
