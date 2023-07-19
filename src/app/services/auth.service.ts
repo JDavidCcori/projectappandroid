@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User, userConverter } from '../models/users.model';
 import { UserI } from '../models/userI.model';
+import { 
+  Auth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut, signInWithPopup, 
+  GoogleAuthProvider, 
+  FacebookAuthProvider
+} from '@angular/fire/auth';
 import {
   Firestore,
   collection,
@@ -20,7 +28,8 @@ import {
 export class AuthService {
   constructor(
     private authfirebase: AngularFireAuth,
-    private _fireStore: Firestore
+    private _fireStore: Firestore,
+    private auth: Auth
   ) {}
 
   async create(user: User): Promise<void> {
@@ -90,8 +99,8 @@ export class AuthService {
     this.authfirebase.signOut();
   }
 
-  registarUser(datos: UserI) {
-    return this.authfirebase.createUserWithEmailAndPassword(
+  register(datos: UserI) {
+    return createUserWithEmailAndPassword(this.auth,
       datos.correo,
       datos.password
     );
@@ -108,5 +117,17 @@ export class AuthService {
     } else {
       return null;
     }
+  }
+
+  loginWithGoogle() {
+    return signInWithPopup(this.auth, new GoogleAuthProvider());
+  }
+
+  loginWithFacebook() {
+    return signInWithPopup(this.auth, new FacebookAuthProvider());
+  }
+
+  logout() {
+    return signOut(this.auth);
   }
 }
