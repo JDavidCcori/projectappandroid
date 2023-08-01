@@ -10,39 +10,48 @@
           <ion-item-divider>
           </ion-item-divider>
           <ion-menu-toggle auto-hide="false">
-            <ion-item>
+            <ion-item detail="true" [routerLink]="['/home']" routerLinkActive="router-link-active">
+              <ion-label>
+                Inicio
+              </ion-label>
+              <ion-icon slot="start" name="clipboard"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngIf="login">
+            <ion-item detail="true" [routerLink]="['/blog-l']" routerLinkActive="router-link-active">
               <ion-label>
                 Mi blog
               </ion-label>
               <ion-icon slot="start" name="clipboard"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngIf="login">
+            <ion-item detail="true" [routerLink]="['/blog-c']" routerLinkActive="router-link-active">
+              <ion-label>
+                Crear blog
+              </ion-label>
+              <ion-icon slot="start" name="clipboard"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false">
-            <ion-item [routerLink]="['/user-i']" routerLinkActive="router-link-active">
+            <ion-item *ngIf="login && rol == 'cliente' " detail="true"
+            [routerLink]="['/user-i']" routerLinkActive="router-link-active">
               <ion-label>
                 Perfil
               </ion-label>
               <ion-icon slot="start" name="person"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item>
-              <ion-label>
-                Mi blog
-              </ion-label>
-              <ion-icon slot="start" name="git-compare"></ion-icon>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-menu-toggle>
-            <ion-item [routerLink]="['/login']" routerLinkActive="router-link-active">
+          <ion-menu-toggle auto-hide="false" *ngIf="login==false">
+            <ion-item detail="true" [routerLink]="['/login']" routerLinkActive="router-link-active">
               <ion-label>
                 Ingresar
               </ion-label>
               <ion-icon slot="start" name="log-in"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item detail="true" (click)="onClick()">
+          <ion-menu-toggle auto-hide="false" *ngIf="login">
+            <ion-item detail="true" [routerLink]="['/home']" (click)="onClick()" routerLinkActive="router-link-active">
               <ion-label>
                 Cerrar sesión
               </ion-label>
@@ -50,7 +59,7 @@
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false">
-            <ion-item [routerLink]="['/createuser']" routerLinkActive="router-link-active">
+            <ion-item detail="true" [routerLink]="['/createuser']" routerLinkActive="router-link-active">
               <ion-label>
                 Registrarse
               </ion-label>
