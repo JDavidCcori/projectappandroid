@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Cliente, clienteConverter } from '../models/cliente.model';
+import { User, userConverter } from '../models/users.model';
 import { Firestore, collection, getDocs, setDoc, doc, query, orderBy, getDoc, deleteDoc } from '@angular/fire/firestore';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -13,27 +11,28 @@ export class ClientesService {
     ) {
     }
 
-    async create(cliente: Cliente): Promise<void> {
+    async create(cliente: User): Promise<void> {
         try {
-            const clientesRef = collection(this._fireStore, "clientes");
+            const clientesRef = collection(this._fireStore, "Clientes");
 
             await setDoc(doc(clientesRef), 
             {
-                nombre: cliente.nombre,
+                name: cliente.name,
+                phonenumber: cliente.phonenumber,
+                birth: cliente.birth,
                 email: cliente.email,
-                telefono: cliente.telefono,
-                ingreso: cliente.ingreso,
+                password: cliente.password,
                 foto: cliente.foto,
-                nacimiento: cliente.nacimiento,
             } );
         } catch (e) {
             console.error(e);
         }
     }
 
-    async getAll(): Promise<Cliente[]> {
-        const clientes: Cliente[] = [];
-        const q = query(collection(this._fireStore, "clientes"), orderBy("nombre")).withConverter(clienteConverter);
+    async getAll(): Promise<User[]> {
+        const clientes: User[] = [];
+        const q = query(collection(this._fireStore, "Clientes"), 
+        orderBy("name")).withConverter(userConverter);
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             clientes.push(doc.data());
@@ -41,29 +40,29 @@ export class ClientesService {
         return clientes;
     }
 
-    async getById(clienteId: string): Promise<Cliente> {
-        const q = doc(this._fireStore, "clientes", clienteId).withConverter(clienteConverter);
+    async getById(uid: string): Promise<User> {
+        const q = doc(this._fireStore, "Clientes", uid).withConverter(userConverter);
         const querySnapshot = await getDoc(q);
         return querySnapshot.data()!;
     }
 
-    async update(cliente: Cliente) {
-        await setDoc(doc(this._fireStore, "clientes", cliente.clienteid).
-            withConverter(clienteConverter), cliente);
+    async update(cliente: User) {
+        await setDoc(doc(this._fireStore, "Clientes", cliente.uid).
+            withConverter(userConverter), cliente);
     }
 
-    async removeById(clienteId: string) {
-        await deleteDoc(doc(this._fireStore, "clientes", clienteId));
+    async removeById(uid: string) {
+        await deleteDoc(doc(this._fireStore, "Clientes", uid));
     }
 
-    async getByNome(nombre: string): Promise<Cliente[]> {
-        const clientes: Cliente[] = await this.getAll();
+    async getByNome(nombre: string): Promise<User[]> {
+        const clientes: User[] = await this.getAll();
 
         if (!nombre) {
             return clientes;
         }
 
         return clientes.filter(
-            cliente => cliente.nombre.toLowerCase().startsWith(nombre.toLowerCase()));
+            cliente => cliente.name.toLowerCase().startsWith(nombre.toLowerCase()));
     }
 }

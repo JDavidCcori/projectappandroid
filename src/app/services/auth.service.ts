@@ -34,7 +34,7 @@ export class AuthService {
 
   async create(user: User): Promise<void> {
     try {
-      const usersRef = collection(this._fireStore, 'users');
+      const usersRef = collection(this._fireStore, 'Usuarios');
 
       await setDoc(doc(usersRef), {
         name: user.name,
@@ -53,7 +53,7 @@ export class AuthService {
   async getAll(): Promise<User[]> {
     const users: User[] = [];
     const q = query(
-      collection(this._fireStore, 'users'),
+      collection(this._fireStore, 'Usuarios'),
       orderBy('name')
     ).withConverter(userConverter);
     const querySnapshot = await getDocs(q);
@@ -64,20 +64,20 @@ export class AuthService {
   }
 
   async getById(uid: string): Promise<User> {
-    const q = doc(this._fireStore, 'users', uid).withConverter(userConverter);
+    const q = doc(this._fireStore, 'Usuarios', uid).withConverter(userConverter);
     const querySnapshot = await getDoc(q);
     return querySnapshot.data()!;
   }
 
   async update(user: User) {
     await setDoc(
-      doc(this._fireStore, 'users', user.uid).withConverter(userConverter),
+      doc(this._fireStore, 'Usuarios', user.uid).withConverter(userConverter),
       user
     );
   }
 
   async removeById(uid: string) {
-    await deleteDoc(doc(this._fireStore, 'users', uid));
+    await deleteDoc(doc(this._fireStore, 'Usuarios', uid));
   }
 
   async getByNome(name: string): Promise<User[]> {
@@ -91,12 +91,9 @@ export class AuthService {
       user.name.toLowerCase().startsWith(name.toLowerCase())
     );
   }
+
   login(correo: string, password: string) {
     return this.authfirebase.signInWithEmailAndPassword(correo, password);
-  }
-
-  logut() {
-    this.authfirebase.signOut();
   }
 
   register(datos: UserI) {
