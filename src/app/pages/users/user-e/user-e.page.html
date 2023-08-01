@@ -11,24 +11,28 @@
 
 <ion-content>
   <form>
-    <ion-item class="mb-3">
-      <ion-label class="form-label">Nombre</ion-label>
-      <ion-input text-right type="text" name="nombre"></ion-input>
+    <ion-item>
+      <ion-label>nombre</ion-label>
+      <ion-input type="text" style="margin-left: 3%;"  name="correo"></ion-input>
     </ion-item>
-    <ion-item class="mb-3">
-      <ion-label class="form-label">Nacimiento</ion-label>
-      <ion-input text-right type="date" name="birth"></ion-input>
+    <ion-item>
+      <ion-label>apellidos</ion-label>
+      <ion-input type="text" style="margin-left: 3%;"  name="correo"></ion-input>
     </ion-item>
-    <ion-item class="mb-3">
-      <ion-label class="form-label">Email</ion-label>
-      <ion-input type="email" style="margin-left: 3%;" name="correo"></ion-input>
+    <ion-item>
+      <ion-label>correo</ion-label>
+      <ion-input type="email" style="margin-left: 3%;"  name="correo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>nacimiento</ion-label>
+      <ion-input type="date" style="margin-left: 3%;"  name="correo"></ion-input>
     </ion-item>
   </form>
   <div no-padding>
     <ion-grid>
       <ion-row>
         <ion-col col-6>
-          <ion-button id="present-alert">Editar</ion-button>
+          <ion-button id="present-alert">Guardar</ion-button>
           <ion-alert trigger="present-alert" header="Please enter your info" [buttons]="alertButtons"
           [inputs]="alertInputs"></ion-alert>
           <ion-button [routerLink]="['/']" routerLinkActive="router-link-active" color="warning" shape="round"
