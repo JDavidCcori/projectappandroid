@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { BlogI } from 'src/app/models/userI.model';
 
 
 @Component({
@@ -17,14 +18,22 @@ import { AlertService } from 'src/app/services/alert.service';
 export class BlogCPage implements OnInit {
   private authService!: AuthService;
   public osForm!: FormGroup;
-  public users: void | User[]=[];
+  public blogI = {
+    title: '',
+    description: '',
+    image: '',
+    mapa: '',
+    uid: '',
+    date: new Date(),
+  }
 
   constructor(
+    private fireStore: FirestoreService,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private toastService: ToastService,
-    private alertService: AlertService,
+    private toast: ToastService,
+    private alert: AlertService,
     private loadingCtrl: LoadingController,
   ) { }
 
@@ -33,4 +42,14 @@ export class BlogCPage implements OnInit {
   async ngOnInit() {
     
   }
+  crearB() {
+
+    const path = 'Blogs';
+    const id = this.fireStore.getId();
+    this.blogI.uid = id;
+    this.fireStore.createDoc(this.blogI, path, id).then( () => {
+        this.toast.presentToast('Guardado con éxito', 3000, 'top')
+        this.router.navigate(['/home']);
+    } )
+}
 }
