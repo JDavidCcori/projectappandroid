@@ -8,6 +8,7 @@ export  interface Estudiante {
 
 export interface UserI {
   nombre: string;
+  apellidos: string;
   correo: string;
   uid?: string;
   password: string;
@@ -18,4 +19,13 @@ export interface UserI {
 export interface authUser{
   email:string;
   password:string;
+}
+
+export interface BlogI {
+  title: string;
+  description: string;
+  image: string;
+  mapa: string;
+  uid?: string;
+  date: Date;
 }
