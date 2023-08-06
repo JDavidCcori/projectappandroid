@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { ToastService } from 'src/app/services/toast.service';
 
+
 @Component({
   selector: 'app-user-i',
   templateUrl: './user-i.page.html',
@@ -18,13 +19,12 @@ export class UserIPage implements OnInit {
     private alert: AlertController,
     private auth: AuthService,
     private firestore: FirestoreService,
-    private toast: ToastService
+    private toast: ToastService,
   ) {}
 
   ngOnInit() {
       this.auth.stateUser().subscribe( res => {
           this.getUid();
-          
       });
       this.getUid();
   }
@@ -90,4 +90,6 @@ export class UserIPage implements OnInit {
     this.toast.presentToast('Actualizado con exito', 3000, 'top')
     })
   }
+
+  
 }

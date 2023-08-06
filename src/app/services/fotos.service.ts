@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Camera, CameraResultType, CameraSource, GalleryPhotos, Photo } from '@capacitor/camera';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 
 @Injectable({
@@ -11,7 +10,7 @@ export class FotosService {
 
   constructor() { }
 
-  async obtenerFoto() {
+  /* async obtenerFoto() {
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
@@ -49,7 +48,7 @@ export class FotosService {
     });
 
     this.rutaParaFoto = archivoGrabado.uri;
-  }
+  } */
 
   private async _leerComoBase64(caminho: string) {
     const response = await fetch(caminho);

@@ -7,14 +7,20 @@
       Blogs
     </ion-title>
     <ion-buttons slot="end">
-        
-      <ion-button >
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
+<ion-content padding-left padding-top>
   
+  <ion-card *ngFor="let blog of blogs">
+    <ion-card-header>
+      <ion-card-title>{{blog.title}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>{{blog.description}}</ion-card-content>
+    <ion-button color="light">
+      Compartir
+      <ion-icon slot="start" name="paper-plane"></ion-icon>
+    </ion-button>
+  </ion-card>
 </ion-content>

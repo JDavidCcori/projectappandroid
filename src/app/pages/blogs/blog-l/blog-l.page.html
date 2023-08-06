@@ -5,28 +5,23 @@
 </ion-header>
 
 <ion-content padding-left padding-top>
-  <ion-fab vertical="top" horizontal="end" slot="fixed" edge="true">
-    <ion-fab-button [routerLink]="['/blog-c']">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  <ion-card #slidingList>
+  
+  <ion-card *ngFor="let blog of blogs" >
     <ion-card-header>
-      <ion-card-title>titulo</ion-card-title>
+      <ion-card-title>{{blog.title}}</ion-card-title>
     </ion-card-header>
   
-    <ion-card-content>descripcion</ion-card-content>
+    <ion-card-content>{{blog.description}}</ion-card-content>
   
     <ion-button color="success" [routerLink]="['/blog-e']">Editar</ion-button>
-    <ion-button color="danger">Eliminar</ion-button>
+    <ion-button [routerLink]="['/blog-d']">Ver</ion-button>
     <ion-button color="light">
       Compartir
-      <ion-icon slot="end" name="star"></ion-icon>
+      <ion-icon slot="start" name="paper-plane"></ion-icon>
     </ion-button>
   </ion-card>
-  
   <ion-fab vertical="top" horizontal="end" slot="fixed" edge="true">
-    <ion-fab-button>
+    <ion-fab-button [routerLink]="['/blog-c']">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -29,7 +29,7 @@ export class AuthService {
   constructor(
     private authfirebase: AngularFireAuth,
     private _fireStore: Firestore,
-    private auth: Auth
+    private auth: Auth,
   ) {}
 
   async create(user: User): Promise<void> {
@@ -120,8 +120,11 @@ export class AuthService {
     return signInWithPopup(this.auth, new GoogleAuthProvider());
   }
 
+  
   loginWithFacebook() {
-    return signInWithPopup(this.auth, new FacebookAuthProvider());
+    const provider = new FacebookAuthProvider();
+
+    return signInWithPopup(this.auth, provider);
   }
 
   logout() {

@@ -3,19 +3,21 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHrerf=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Crear blog</ion-title>
+    <ion-title>Editar blog</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form>
+  <ion-list *ngIf="blogs">
     <ion-item lines="none">
-      <ion-label position="floating" class="label-input-title">Título</ion-label>
-      <ion-input text-right type="text"></ion-input>
+      <ion-label>{{blogs.title}}</ion-label>
+      <ion-note color="medium" slot="start">Título</ion-note>
+      <ion-icon (click)="editAtributo('title')" slot="end" name="create"></ion-icon>
     </ion-item>
     
     <ion-item lines="none">
-      <ion-label position="floating" class="label-input-title">Descripción</ion-label>
-      <ion-input text-right type="password"></ion-input>
+      <ion-label>{{blogs.description}}</ion-label>
+      <ion-note color="medium" slot="start">Descriptión</ion-note>
+      <ion-icon (click)="editAtributo('title')" slot="end" name="create"></ion-icon>
     </ion-item>
     <div no-padding>
       <ion-grid>
@@ -34,6 +36,6 @@
         </ion-row>
       </ion-grid>
     </div>
-  </form>
+  </ion-list>
 </ion-content>
 

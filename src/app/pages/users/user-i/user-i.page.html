@@ -17,10 +17,12 @@
     <ion-item>
       <ion-label>{{info.nombre}}</ion-label>
       <ion-note color="medium" slot="start">Nombres</ion-note>
+      <ion-icon (click)="editAtributo('nombre')" slot="end" name="create"></ion-icon>
     </ion-item>
     <ion-item>
       <ion-label>{{info.apellidos}}</ion-label>
       <ion-note color="medium" slot="start">Apellidos</ion-note>
+      <ion-icon (click)="editAtributo('apellidos')" slot="end" name="create"></ion-icon>
     </ion-item>
     <ion-item>
       <ion-label>{{info.correo}}</ion-label>

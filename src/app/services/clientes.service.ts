@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User, userConverter } from '../models/users.model';
 import { Firestore, collection, getDocs, setDoc, doc, query, orderBy, getDoc, deleteDoc } from '@angular/fire/firestore';
-
+import { UserI } from '../models/userI.model';
 @Injectable({
     providedIn: 'root'
 })
@@ -9,24 +9,6 @@ export class ClientesService {
     constructor(
         private _fireStore: Firestore,
     ) {
-    }
-
-    async create(cliente: User): Promise<void> {
-        try {
-            const clientesRef = collection(this._fireStore, "Clientes");
-
-            await setDoc(doc(clientesRef), 
-            {
-                name: cliente.name,
-                phonenumber: cliente.phonenumber,
-                birth: cliente.birth,
-                email: cliente.email,
-                password: cliente.password,
-                foto: cliente.foto,
-            } );
-        } catch (e) {
-            console.error(e);
-        }
     }
 
     async getAll(): Promise<User[]> {
@@ -41,18 +23,18 @@ export class ClientesService {
     }
 
     async getById(uid: string): Promise<User> {
-        const q = doc(this._fireStore, "Clientes", uid).withConverter(userConverter);
+        const q = doc(this._fireStore, "Usuarios", uid).withConverter(userConverter);
         const querySnapshot = await getDoc(q);
         return querySnapshot.data()!;
     }
 
     async update(cliente: User) {
-        await setDoc(doc(this._fireStore, "Clientes", cliente.uid).
+        await setDoc(doc(this._fireStore, "Usuarios", cliente.uid).
             withConverter(userConverter), cliente);
     }
 
     async removeById(uid: string) {
-        await deleteDoc(doc(this._fireStore, "Clientes", uid));
+        await deleteDoc(doc(this._fireStore, "Usuarios", uid));
     }
 
     async getByNome(nombre: string): Promise<User[]> {

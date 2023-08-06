@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Detalles de lblog
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="info">
+    <ion-note color="medium" slot="start">Título</ion-note>
+    <ion-item>
+      <ion-label>{{info.title}}</ion-label>
+      <ion-icon slot="end" name="create"></ion-icon>
+    </ion-item>
+    <ion-note color="medium" slot="start">Descripción</ion-note>
+    <ion-item>
+      <ion-label>{{info.description}}</ion-label>
+      <ion-icon slot="end" name="create"></ion-icon>
+    </ion-item>
+    <ion-note color="medium" slot="start">Fecha creación</ion-note>
+    <ion-item>
+      <ion-label>{{info.date}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-footer>

@@ -11,6 +11,7 @@ export interface UserI {
   apellidos: string;
   correo: string;
   uid?: string;
+  foto: string;
   password: string;
   birth: Date;
   perfil: 'cliente'| 'admin';
@@ -27,5 +28,6 @@ export interface BlogI {
   image: string;
   mapa: string;
   uid?: string;
+  userId: string;
   date: Date;
 }

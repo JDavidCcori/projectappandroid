@@ -1,24 +1,18 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Usuarios</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding-left padding-top>
-  <ion-card #slidingList>
-    <ion-card-header>
-      <ion-card-title>titulo</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>descripcion</ion-card-content>
-  
-    <ion-button color="success">Silenciar</ion-button>
+  <ion-card *ngFor="let user of users" >
+    <ion-card-content>{{user.nombre}}</ion-card-content>
+    <ion-card-content>{{user.apellidos}}</ion-card-content>
+    <ion-card-content>{{user.correo}}</ion-card-content>
+    <ion-card-content>{{user.birth}}</ion-card-content>
     <ion-button color="danger">Eliminar</ion-button>
   </ion-card>
-  
-  <ion-fab vertical="top" horizontal="end" slot="fixed" edge="true">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

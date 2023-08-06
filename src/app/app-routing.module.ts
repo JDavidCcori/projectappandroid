@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
+
+
 
 const routes: Routes = [
   {
@@ -14,15 +16,15 @@ const routes: Routes = [
   },
   {
     path: 'user-e',
-    loadChildren: () => import('./pages/users/user-e/user-e.module').then( m => m.UserEPageModule)
+    loadChildren: () => import('./pages/users/user-e/user-e.module').then( m => m.UserEPageModule), canActivate: [AngularFireAuthGuard]
   },
   {
     path: 'user-l',
-    loadChildren: () => import('./pages/users/user-l/user-l.module').then( m => m.UserLPageModule)
+    loadChildren: () => import('./pages/users/user-l/user-l.module').then( m => m.UserLPageModule), canActivate: [AngularFireAuthGuard]
   },
   {
     path: 'blog-e',
-    loadChildren: () => import('./pages/blogs/blog-e/blog-e.module').then( m => m.BlogEPageModule)
+    loadChildren: () => import('./pages/blogs/blog-e/blog-e.module').then( m => m.BlogEPageModule), canActivate: [AngularFireAuthGuard]
   },
   {
     path: 'blog-l',
@@ -38,11 +40,19 @@ const routes: Routes = [
   },
   {
     path: 'blog-c',
-    loadChildren: () => import('./pages/blogs/blog-c/blog-c.module').then( m => m.BlogCPageModule)
+    loadChildren: () => import('./pages/blogs/blog-c/blog-c.module').then( m => m.BlogCPageModule), canActivate: [AngularFireAuthGuard]
   },
   {
     path: 'user-i',
-    loadChildren: () => import('./pages/users/user-i/user-i.module').then( m => m.UserIPageModule)
+    loadChildren: () => import('./pages/users/user-i/user-i.module').then( m => m.UserIPageModule), canActivate: [AngularFireAuthGuard]
+  },
+  {
+    path: 'blog-d',
+    loadChildren: () => import('./pages/blogs/blog-d/blog-d.module').then( m => m.BlogDPageModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
   },
 ];
 

@@ -20,6 +20,7 @@ export class CreateuserPage implements OnInit {
     uid: '',
     password: '',
     birth: new Date(),
+    foto: '',
     perfil: 'cliente',
   };
   constructor(
@@ -42,7 +43,7 @@ export class CreateuserPage implements OnInit {
       const path = 'Usuarios';
       const id = res.user.uid;
       this.datos.uid = id;
-      await this.firestore.createDoc(this.datos, path, id);
+      await this.firestore.createDocU(this.datos, path, id);
       this.toast.presentToast('Registrado con exito', 3000, 'top');
       this.router.navigate(['/login']);
     }

@@ -10,11 +10,19 @@
           <ion-item-divider>
           </ion-item-divider>
           <ion-menu-toggle auto-hide="false">
+            <ion-item *ngIf="login && rol == 'admin' " detail="true" [routerLink]="['/user-l']" routerLinkActive="router-link-active">
+              <ion-label>
+                Ajustes
+              </ion-label>
+              <ion-icon slot="start" name="build"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
             <ion-item detail="true" [routerLink]="['/home']" routerLinkActive="router-link-active">
               <ion-label>
                 Inicio
               </ion-label>
-              <ion-icon slot="start" name="clipboard"></ion-icon>
+              <ion-icon slot="start" name="home"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" *ngIf="login">
@@ -22,7 +30,7 @@
               <ion-label>
                 Mi blog
               </ion-label>
-              <ion-icon slot="start" name="clipboard"></ion-icon>
+              <ion-icon slot="start" name="albums"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" *ngIf="login">
@@ -30,7 +38,7 @@
               <ion-label>
                 Crear blog
               </ion-label>
-              <ion-icon slot="start" name="clipboard"></ion-icon>
+              <ion-icon slot="start" name="create"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false">
@@ -63,7 +71,15 @@
               <ion-label>
                 Registrarse
               </ion-label>
-              <ion-icon slot="start" name="home"></ion-icon>
+              <ion-icon slot="start" name="clipboard"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item detail="true" [routerLink]="['/about']" routerLinkActive="router-link-active">
+              <ion-label>
+                Acerca de
+              </ion-label>
+              <ion-icon slot="start" name="clipboard"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

@@ -35,19 +35,15 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this.auth.register(this.formLogin.value)
       .then(response => {
-        console.log(response);
         this.router.navigate(['/home']);
       })
       .catch(error => console.log(error));
   }
   async login() {
-    console.log('credenciales -> ', this.credentials);
     const res = await this.auth.login(this.credentials.correo, this.credentials.password).catch( error => {
-        console.log('error');
         this.toast.presentToast('Correo o contraseña invalidos', 2000, 'top');
     })
     if (res) {
-        console.log('res -> ', res);
         this.toast.presentToast('Ingreso exitoso', 2000, 'top')
         this.router.navigate(['/home'])
     }
@@ -56,7 +52,6 @@ export class LoginPage implements OnInit {
   onClick() {
     this.auth.loginWithGoogle()
       .then(response => {
-        console.log(response);
         this.router.navigate(['/home']);
       })
       .catch(error => console.log(error))
